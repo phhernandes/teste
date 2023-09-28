@@ -1,17 +1,17 @@
 import { PlayCircleOutlined,Search} from '@mui/icons-material';
-import './globals.css';
+import '@/app/globals.css';
 import Titulo from "@/components/Titulo";
 import CardSom from "@/components/CardSom";
 
 async function carregarDados(){
-  const url = "https://api.vagalume.com.br/rank.php?type=alb&period=month&scope=internacional&limit=20&apikey={c5efc47c2e8e46f1086a5154bdb7af07}"
+  const url = "http://localhost:3011/favoritos"
   const response = await fetch(url)
   const json = await response.json()
   console.log(json);
   return json
 }
 
-export default async function Home() {
+export default async function Favoritos() {
 
 const musicas = await carregarDados()
   
@@ -42,11 +42,13 @@ const musicas = await carregarDados()
         </ul>
       </nav>
       
-      <Titulo>Álbuns Populares</Titulo>
+      {/*fileira lançamentos*/}
+      
+      <Titulo>Favoritos</Titulo>
       
       <section className="flex flex-wrap px-40 justify-between text-zinc-100">
        <CardSom musica={musicas} />
-      </section>    
+      </section>
     </>    
   )
 }
